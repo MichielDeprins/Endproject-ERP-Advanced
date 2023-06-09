@@ -1,9 +1,10 @@
 <mvc:View
     controllerName="movementsapp.controller.Detail"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.f.semantic"
-    xmlns:mvc="sap.ui.core.mvc">
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
 
     <semantic:SemanticPage
         id="detailPage"
@@ -51,25 +52,40 @@
             <VBox>
                 <f:SimpleForm>
                     <f:content>
-                        <Label text="{i18n>Type}" visible="{detailView>/new}" />   
-                         <Input value="{Type}" visible="{detailView>/new}" placeholder="{i18n>phType}" /> 
-                        <Label text="{i18n>Movement Date}" visible="{detailView>/new}" />   
-                         <Input value="{MovDate}" visible="{detailView>/new}" placeholder="{i18n>phMovDate}" />  
-                           <Label text="{i18n>Change Date}" visible="{detailView>/new}" />   
-                         <Input value="{ChgDate}" visible="{detailView>/new}" placeholder="{i18n>phChgDate}" /> 
-                           <Label text="{i18n>ChgUser}" visible="{detailView>/new}" />   
-                         <Input value="{ChgUser}" visible="{detailView>/new}" placeholder="{i18n>phChgUser}" />   
-                           <Label text="{i18n>Partner}" visible="{detailView>/new}" />   
-                         <Input value="{Partner}" visible="{detailView>/new}" placeholder="{i18n>phPartner}" /> 
-                           <Label text="{i18n>Location}" visible="{detailView>/new}" />   
-                         <Input value="{Location}" visible="{detailView>/new}" placeholder="{i18n>phLocation}" />
-                           <Label text="{i18n>Finished}" visible="{detailView>/new}" />   
-                         <Input value="{Finished}" visible="{detailView>/new}" placeholder="{i18n>phFinished     }" />             
+                      <Label text="{i18n>Id}" visible="{detailView>/new}" />
+                      <Input value="{Id}" visible="{detailView>/new}" />
+                      <Label text="{i18n>Type}" /> 
+                       <Select selectedKey="{Type}">
+                          <core:Item key="IN" text="Incoming movement" />
+                          <core:Item key="OUT" text="Outgoing movement" />
+                          <core:Item key="I/O" text="Incoming and outgoing movement" />
+                      </Select> 
+                      <Label text="{i18n>MovDate}." />
+                      <DatePicker value="{ path: 'MovDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
+                      <Label text="{i18n>ChgDate}" />
+                      <DatePicker value="{ path: 'ChgDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
+                      <Label text="{i18n>ChgUser}" />
+                      <Input value="{ChgUser}" />
+                      <Label text="{i18n>Partner}" />
+                      <Input value="{Partner}" />
+                      <Label text="{i18n>Location}" /> 
+                      <Select selectedKey="{Location}">
+                        <core:Item key="NOORD" text="Campus noorderplaats" />
+                        <core:Item key="ELLER" text="Campus ellermans" />
+                        <core:Item key="VIADU" text="Campus viaduct" />
+                        <core:Item key="LICHT" text="Campus lichttoren" />
+                    </Select> 
+                    <Label text="{i18n>Finished}" />
+                    <CheckBox selected="{Finished}" />       
                     </f:content>
                 </f:SimpleForm>
             </VBox>
         </semantic:content>
-
+   <!-- <semantic:footerCustomActions>
+			<Button text="Save" press="onSave" />
+            <Button text="Delete" press="onDelete" visible="{= !${detailView>/new} }"/>
+			<Button text="Cancel" press="onCancel" visible="{detailView>/new}"/>
+        </semantic:footerCustomActions> -->
     </semantic:SemanticPage>
 
 </mvc:View>
