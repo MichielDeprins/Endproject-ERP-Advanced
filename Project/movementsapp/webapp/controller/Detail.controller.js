@@ -25,6 +25,7 @@ sap.ui.define(
         var oViewModel = new JSONModel({
           busy: false,
           delay: 0,
+          new: false,
         });
 
         this.getRouter()
@@ -107,21 +108,42 @@ sap.ui.define(
        * @private
        */
       _onObjectMatched: function (oEvent) {
-        var sObjectId = oEvent.getParameter("arguments").objectId;
+        this.getModel("detailView").setProperty("/new", false);
+
+        const sObjectId = oEvent.getParameter("arguments").objectId,
+          model = this.getModel();
         this.getModel("appView").setProperty(
           "/layout",
           "TwoColumnsMidExpanded"
         );
-        this.getModel()
-          .metadataLoaded()
-          .then(
-            function () {
-              var sObjectPath = this.getModel().createKey("MOVEMENTSet", {
-                Id: sObjectId,
-              });
-              this._bindView("/" + sObjectPath);
-            }.bind(this)
-          );
+        model.resetChanges();
+        if (sObjectId === "new") {
+          // this.getView().setModel(model);
+          const bindingContext = model.createEntry("/MOVEMENTSet", {
+            properties: {
+              Id: "",
+              Type: "IN",
+              MovDate: "",
+              Partner: "",
+              Location: "NOORD",
+              Finished: false,
+            },
+          });
+          this.getView().bindElement(bindingContext.getPath());
+          this.getModel("detailView").setProperty("/new", true);
+          this.getModel("detailView").setProperty("/busy", false);
+        } else {
+          this.getModel()
+            .metadataLoaded()
+            .then(
+              function () {
+                var sObjectPath = model.createKey("MOVEMENTSet", {
+                  Id: sObjectId,
+                });
+                this._bindView("/" + sObjectPath);
+              }.bind(this)
+            );
+        }
       },
 
       /**
@@ -161,7 +183,7 @@ sap.ui.define(
           this.getRouter().getTargets().display("detailObjectNotFound");
           // if object could not be found, the selection in the list
           // does not make sense anymore.
-          this.getOwnerComponent().oListSelector.clearListListSelection();
+          // this.getOwnerComponent().oListSelector.clearListListSelection();
           return;
         }
 

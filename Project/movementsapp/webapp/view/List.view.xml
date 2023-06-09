@@ -37,7 +37,7 @@
                 selectionChange=".onSelectionChange">
 
                 <headerToolbar>
-                    <OverflowToolbar>
+                    <OverflowToolbar  id="_IDGenOverflowToolbar1">
                         <SearchField
                             id="searchField"
                             showRefreshButton="true"
@@ -45,24 +45,24 @@
                             search=".onSearch"
                             width="auto">
                             <layoutData>
-                                <OverflowToolbarLayoutData
+                                <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData1"
                                     minWidth="150px"
                                     maxWidth="240px"
                                     shrinkable="true"
                                     priority="NeverOverflow"/>
                             </layoutData>
                         </SearchField>
-                        <ToolbarSpacer/>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
                         <Button
                             id="sortButton"
                             press=".onOpenViewSettings"
                             icon="sap-icon://sort"
                             type="Transparent"/>
-
+   <Button id="_IDGenButton1" press="onAddMovement" icon="sap-icon://add" type="Transparent" />
                     </OverflowToolbar>
                 </headerToolbar>
                 <items>
-                    <ObjectListItem
+                    <ObjectListItem id="_IDGenObjectListItem1"
                         type="Navigation"
                         press=".onSelectionChange"
                         title="{Id}"
