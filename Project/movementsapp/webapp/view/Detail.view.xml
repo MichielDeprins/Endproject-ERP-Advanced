@@ -1,0 +1,75 @@
+<mvc:View
+    controllerName="movementsapp.controller.Detail"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:mvc="sap.ui.core.mvc">
+
+    <semantic:SemanticPage
+        id="detailPage"
+        busy="{detailView>/busy}"
+        busyIndicatorDelay="{detailView>/delay}">
+        <semantic:titleHeading>
+            <Title
+                text="{Id}"
+                level="H2"/>
+        </semantic:titleHeading>
+        <semantic:headerContent>
+            <ObjectAttribute title="{i18n>priceTitle}"/>
+            <ObjectNumber />
+        </semantic:headerContent>
+        <semantic:content>
+     
+        </semantic:content>
+        <!--Semantic ShareMenu Buttons-->
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction
+                id="shareEmail"
+                press=".onSendEmailPress"/>
+        </semantic:sendEmailAction>
+
+        <semantic:closeAction>
+            <semantic:CloseAction
+                    id="closeColumn"
+                    press=".onCloseDetailPress"/>
+        </semantic:closeAction>
+
+        <semantic:fullScreenAction>
+            <semantic:FullScreenAction
+                    id="enterFullScreen"
+                    visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+                    press=".toggleFullScreen"/>
+        </semantic:fullScreenAction>
+        <semantic:exitFullScreenAction>
+            <semantic:ExitFullScreenAction
+                    id="exitFullScreen"
+                    visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+                    press=".toggleFullScreen"/>
+        </semantic:exitFullScreenAction>
+
+        <semantic:content>
+            <VBox>
+                <f:SimpleForm>
+                    <f:content>
+                        <Label text="{i18n>Type}" visible="{detailView>/new}" />   
+                         <Input value="{Type}" visible="{detailView>/new}" placeholder="{i18n>phType}" /> 
+                        <Label text="{i18n>Movement Date}" visible="{detailView>/new}" />   
+                         <Input value="{MovDate}" visible="{detailView>/new}" placeholder="{i18n>phMovDate}" />  
+                           <Label text="{i18n>Change Date}" visible="{detailView>/new}" />   
+                         <Input value="{ChgDate}" visible="{detailView>/new}" placeholder="{i18n>phChgDate}" /> 
+                           <Label text="{i18n>ChgUser}" visible="{detailView>/new}" />   
+                         <Input value="{ChgUser}" visible="{detailView>/new}" placeholder="{i18n>phChgUser}" />   
+                           <Label text="{i18n>Partner}" visible="{detailView>/new}" />   
+                         <Input value="{Partner}" visible="{detailView>/new}" placeholder="{i18n>phPartner}" /> 
+                           <Label text="{i18n>Location}" visible="{detailView>/new}" />   
+                         <Input value="{Location}" visible="{detailView>/new}" placeholder="{i18n>phLocation}" />
+                           <Label text="{i18n>Finished}" visible="{detailView>/new}" />   
+                         <Input value="{Finished}" visible="{detailView>/new}" placeholder="{i18n>phFinished     }" />             
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </semantic:content>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
