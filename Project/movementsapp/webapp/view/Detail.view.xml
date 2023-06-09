@@ -9,16 +9,13 @@
     <semantic:SemanticPage
         id="detailPage"
         busy="{detailView>/busy}"
-        busyIndicatorDelay="{detailView>/delay}">
+        busyIndicatorDelay="{detailView>/delay}"
+        showFooter="true">
         <semantic:titleHeading>
             <Title
                 text="{Id}"
                 level="H2"/>
         </semantic:titleHeading>
-        <semantic:headerContent>
-            <ObjectAttribute title="{i18n>priceTitle}"/>
-            <ObjectNumber />
-        </semantic:headerContent>
         <semantic:content>
      
         </semantic:content>
@@ -81,11 +78,11 @@
                 </f:SimpleForm>
             </VBox>
         </semantic:content>
-   <!-- <semantic:footerCustomActions>
+ <semantic:footerCustomActions>
 			<Button text="Save" press="onSave" />
-            <Button text="Delete" press="onDelete" visible="{= !${detailView>/new} }"/>
+            <Button text="Delete" press="onDelete" visible="{= !${detailView>/new} }"/> 
 			<Button text="Cancel" press="onCancel" visible="{detailView>/new}"/>
-        </semantic:footerCustomActions> -->
+        </semantic:footerCustomActions>
     </semantic:SemanticPage>
 
 </mvc:View>
