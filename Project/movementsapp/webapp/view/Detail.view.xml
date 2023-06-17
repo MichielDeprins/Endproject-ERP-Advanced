@@ -60,9 +60,9 @@
                       <Label text="{i18n>MovDate}." />
                       <DatePicker value="{ path: 'MovDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
                       <Label text="{i18n>ChgDate}" />
-                      <DatePicker value="{ path: 'ChgDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
-                      <Label text="{i18n>ChgUser}" />
-                      <Input value="{ChgUser}" />
+                      <DatePicker editable="false" value="{ path: 'ChgDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
+                      <Label  text="{i18n>ChgUser}" />
+                      <Input value="{ChgUser}" editable="false"/>
                       <Label text="{i18n>Partner}" />
                       <Input value="{Partner}" />
                       <Label text="{i18n>Location}" /> 
