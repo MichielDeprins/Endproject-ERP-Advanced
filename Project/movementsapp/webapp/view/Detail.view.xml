@@ -44,7 +44,6 @@
                     visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
                     press=".toggleFullScreen"/>
         </semantic:exitFullScreenAction>
-
         <semantic:content>
             <VBox>
                 <f:SimpleForm>
@@ -76,8 +75,34 @@
                     <CheckBox selected="{Finished}" />       
                     </f:content>
                 </f:SimpleForm>
+                 <Table inset="false" visible="{= !${detailView>/new} }" items="{ path: 'MovementItemSet' }">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="{i18n>Item}" level="H2"/>
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>ItemID}" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="{i18n>Matnr}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem vAlign="Middle">
+                            <cells>
+                                <ObjectIdentifier title="{ItemId}" />
+                                <ObjectNumber number="{Matnr}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
             </VBox>
         </semantic:content>
+
  <semantic:footerCustomActions>
 			<Button text="Save" press="onSave" />
             <Button text="Delete" press="onDelete" visible="{= !${detailView>/new} }"/> 
